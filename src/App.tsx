@@ -2,9 +2,15 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import {Login, Registration} from './utils'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [Username, setUsername] = useState("")
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
+    setUsername(e.target.value);
+  }
 
   return (
     <>
@@ -20,6 +26,13 @@ function App() {
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
+        </button>
+        <input type="text" value={Username} onChange={handleChange} />
+        <button onClick={() => Login(Username)}>
+          Login
+        </button>
+        <button onClick={() => Registration(Username)}>
+          Registration
         </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
