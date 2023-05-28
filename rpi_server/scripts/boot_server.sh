@@ -2,11 +2,11 @@
 
 cd ~/Network_Media/final/server
 
-while :
-do
+for i in {1..5}; do
     # start python server
     echo -e "Running server on 8000..."
-    gunicorn server:app
+    python3 server.py &
+    sleep 3
 
     # check if server is on
     server=$(lsof -n -i | grep LISTEN)

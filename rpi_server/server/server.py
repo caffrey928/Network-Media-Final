@@ -41,4 +41,4 @@ def payment():
 # run "python3 server.py" to start development server
 # run "gunicorn server:app" to start production depployment server
 if __name__ == '__main__':
-    app.run(port=8000, debug=True)
+    app.run(host='0.0.0.0', port=8000, debug=True)
