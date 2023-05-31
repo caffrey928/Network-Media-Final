@@ -9,6 +9,12 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 import time
+
+
+
+class IOTA_crawler():
+    __init__()
+
 # constans, should in another file, but I am lazy LOL
 IOTA_TANGLE = "https://explorer.iota.org/mainnet"  # mainnet
 ADDR = "iota1qzn3hw9ptvfxnh9w3adxdkqt0ryrgzcny3eafs0v76ad0hl3v3vrjj9hkc5"  # user account address
@@ -79,5 +85,3 @@ print("close browser...")
 #browser.close()
 
 
-# except TimeoutException:
-#     print("ERROR")
