@@ -13,7 +13,7 @@ import time
 
 #constants
 IOTA_TANGLE = "https://explorer.iota.org/mainnet"  # mainnet
-ADDR = "iota1qzn3hw9ptvfxnh9w3adxdkqt0ryrgzcny3eafs0v76ad0hl3v3vrjj9hkc5"  # user account address
+ADDR = "iota1qqlvc9x3whxunu9pacm6zq2jv6mp5a8yz26ppljhe0ftjd6v03qdc45jd4m"  # user account address
 class IOTA_crawler():
     def __init__(self, addr):
         """
@@ -57,8 +57,8 @@ class IOTA_crawler():
         input_ele = self.browser.find_element(By.CLASS_NAME,self.locator)
         input_ele.send_keys(ADDR)
         input_ele.send_keys(Keys.ENTER)
+        
         time.sleep(5)
-
         ## find final balance
         balance_ele = self.browser.find_element(By.XPATH,self.balance_locator)
         balance = balance_ele.text
