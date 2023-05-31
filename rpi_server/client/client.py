@@ -1,7 +1,7 @@
 import requests
 
 # URL of the Flask server
-base_url = 'http://localhost:8000'
+base_url = 'http://172.20.10.3:8000'
 
 def send_payment(value, date):
     # Data to send in the request
@@ -17,5 +17,5 @@ def send_payment(value, date):
     else:
         print('Error occurred while sending the request.')
 
-send_payment(5, "5/28/2023")
+# send_payment(5, "5/28/2023")
 send_payment(10, "5/28/2023")

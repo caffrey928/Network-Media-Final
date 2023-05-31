@@ -1,4 +1,5 @@
 from demo_lcd import lcd
+from pusher import pusher
 
 def process_data(data):
     # Process the data and return the result
@@ -8,7 +9,8 @@ def process_data(data):
 def process_payment(data):
     # Process the data and return the result
     if data["value"] >= 10:
-        lcd()
+        lcd("Success Payment")
+        pusher()
         return "Payment Success!"
     else:
         return "Payment Fail!"
