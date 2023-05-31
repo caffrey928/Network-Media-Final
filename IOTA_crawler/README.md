@@ -5,7 +5,7 @@
 1. environment
 
 ```
-py -3.10 -m pip install requirement.txt
+py -3.10 -m pip install -r requirement.txt
 ```
 
 2. run
