@@ -5,12 +5,17 @@
 1. environment
 
 ```
-py -3.10 -m pip install -r requirement.txt
+pip install -r requirement.txt
 ```
+
+2. Webdriver
+
+- install webdriver [https://chromedriver.chromium.org/downloads](https://chromedriver.chromium.org/downloads)
+- select right version of your chrome(more-help-more about chrome)
 
 2. run
 
-modify desired addr
+- modify desired addr
 
 ```
 ./main.py
