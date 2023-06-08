@@ -3,7 +3,6 @@ from utils import process_data, process_payment
 
 app = Flask(__name__)
 
-
 @app.route('/')
 def hello():
     return 'Hello, World!'
