@@ -23,12 +23,13 @@ def payment():
         result = crawler.start()
         print("Crawled!")
 
-        if result["balance"] == "0":
-            new_balance = 0.0
+        if(result["status"]):
+            new_balance = result["balance"]
+            payment = new_balance - balance
+            balance = new_balance
         else:
-            new_balance = float(result["balance"][:-3])
-        payment = new_balance - balance
-        balance = new_balance
+            payment = 0
+        
 
         # Check the payment
         if(payment <= 0):
@@ -49,8 +50,6 @@ def payment():
 if __name__ == '__main__':
     crawler = IOTA_crawler()
     result = crawler.start()
-    if result["balance"] == "0":
-        balance = 0.0
-    else:
-        balance = float(result["balance"][:-3])
+    if(result["status"]):
+        balance = result["balance"]
     app.run(host='0.0.0.0', port=8000, debug=True)
