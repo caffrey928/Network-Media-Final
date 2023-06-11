@@ -38,9 +38,9 @@ def payment():
         else:
             lcd("Fail Payment")
         
-        time.sleep(5)
+        time.sleep(3)
 
-        lcd("Please pay 5Mi to buy!")
+        lcd("Pay 5Mi to buy!")
         
         # Return the response
         return

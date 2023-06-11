@@ -8,7 +8,7 @@
 import drivers
 from time import sleep
 
-def lcd(message = "Please Pay 5Mi to buy"):
+def lcd(message = "Pay 5Mi to buy"):
     # Load the driver and set it to "display"
     # If you use something from the driver library use the "display." prefix first
     display = drivers.Lcd()

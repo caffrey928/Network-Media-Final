@@ -1,6 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS
 import requests
+import multiprocessing
 from IOTA_crawler.main import IOTA_crawler
 
 app = Flask(__name__)
@@ -30,17 +31,20 @@ def payment():
         else:
             payment = 0
         
-
+        work = False
         # Check the payment
         if(payment <= 0):
-            requests.post(f'{base_url}/payment', json={"work": False})
             response = "Fail Payment!"
         elif(payment < 5):
-            requests.post(f'{base_url}/payment', json={"work": False})
             response = "No enough money!"
         else:
-            requests.post(f'{base_url}/payment', json={"work": True})
+            work = True
             response = "Success Payment!"
+        
+
+        p = multiprocessing.Pool(processes = 1)
+        p.apply_async(requests.post, args=[f'{base_url}/payment'], kwds={'json': {"work": work}})
+        p.close()
 
         # Return the response
         return response
@@ -48,6 +52,7 @@ def payment():
 # run "python3 server.py" to start development server
 # run "gunicorn server:app" to start production depployment server
 if __name__ == '__main__':
+    print("Start first crawling...")
     crawler = IOTA_crawler()
     result = crawler.start()
     if(result["status"]):

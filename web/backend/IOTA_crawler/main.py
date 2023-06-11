@@ -26,7 +26,7 @@ class IOTA_crawler:
         crawler = IOTA_crawler(addr=<your IOTA addr>)
         result = crawler.start()
         note:
-        result dict: {"satatus:"status,"balance":balance,"date":date,"amount":amount}
+        result dict: {"status:"status,"balance":balance,"date":date,"amount":amount}
         """
         try:
             self.addr = addr
@@ -42,7 +42,7 @@ class IOTA_crawler:
         self.id_date = 0
         self.id_amount = 0
 
-        ## driver setting
+        # driver setting
         self.options = Options()
         self.options.add_experimental_option(
             "excludeSwitches", ["enable-automation", "enable-logging"]
@@ -53,18 +53,23 @@ class IOTA_crawler:
         status = False
         balance = 0
         try:
-            ##open chrome and maximize window
+            # open chrome and maximize window
+            # self.browser = webdriver.Chrome(
+            #     service=Service(ChromeDriverManager().install()), 
+            #     options=self.options
+            # )
             self.browser = webdriver.Chrome(
-                service=Service(ChromeDriverManager().install()), options=self.options
+                executable_path="./chromedriver.exe",
+                options=self.options
             )
             self.browser.maximize_window()
 
-            ## open IOTA tangle explorer
+            # open IOTA tangle explorer
             link = IOTA_TANGLE
             print(f"openinging web: {link}")
             self.browser.get(link)
-            ##rather than sleep, explicit wait might be a better way for crawler, having more custumization options
-            #time.sleep(12)
+            # rather than sleep, explicit wait might be a better way for crawler, having more custumization options
+            # time.sleep(12)
             try:
                 WebDriverWait(self.browser, 20).until(EC.visibility_of_element_located((By.CLASS_NAME, self.search_locator)))
             except:
