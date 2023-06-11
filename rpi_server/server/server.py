@@ -1,5 +1,8 @@
 from flask import Flask, request
 from utils import process_data, process_payment
+from demo_lcd import lcd
+from pusher import pusher
+import time
 
 app = Flask(__name__)
 
@@ -29,13 +32,18 @@ def payment():
         data = request.get_json()
         
         # Process the data
-        result = process_payment(data)
+        if(data["work"]):
+            lcd("Success Payment")
+            pusher()
+        else:
+            lcd("Fail Payment")
         
-        # Prepare the response
-        response = {'result': result}
+        time.sleep(5)
+
+        lcd("Please pay 5Mi to buy!")
         
         # Return the response
-        return response
+        return
 
 # run "python3 server.py" to start development server
 # run "gunicorn server:app" to start production depployment server
