@@ -6,7 +6,7 @@ from IOTA_crawler.main import IOTA_crawler
 app = Flask(__name__)
 CORS(app)
 
-base_url = 'http://172.20.10.3:8000'
+base_url = 'http://172.20.10.4:8000'
 balance = 0
 
 @app.route('/')
