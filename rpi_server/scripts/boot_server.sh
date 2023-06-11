@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd ~/Network_Media/final/server
+# cd ~/Network_Media/final/server
+cd ../server
 
 for i in {1..5}; do
     # start python server
