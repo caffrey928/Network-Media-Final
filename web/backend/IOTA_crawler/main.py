@@ -123,7 +123,8 @@ class IOTA_crawler:
             ## after grabbing all resoure by selenium,close browser
             status = True
             print("close browser...")
-            self.browser.close()
+            # self.browser.close()
+            self.browser.quit()
         except Exception as error:
             print("crawling error: ")
             print(error)
