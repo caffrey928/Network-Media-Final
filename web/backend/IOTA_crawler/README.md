@@ -20,9 +20,9 @@ pip install -r requirement.txt
 
 ```
 if __name__ == "__main__":
-    #ADDR = <your desired address>
-    crawler = IOTA_crawler(addr=ADDR)
-    result = crawler.start()
+    #ADDR = your desired address
+    crawler = IOTA_crawler()
+    result = crawler.get_balance(addr=ADDR)
 ```
 
 - Import as module

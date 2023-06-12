@@ -19,19 +19,16 @@ ADDR = "iota1qqlvc9x3whxunu9pacm6zq2jv6mp5a8yz26ppljhe0ftjd6v03qdc45jd4m"  # use
 
 
 class IOTA_crawler:
-    def __init__(self, addr=ADDR):
+    def __init__(self):
         """
         -----------IOTA crawler------------
         usage:
-        crawler = IOTA_crawler(addr=<your IOTA addr>)
-        result = crawler.start()
+        crawler = IOTA_crawler()
+        result = crawler.get_balance(addr=<your IOTA addr>)
         note:
-        result dict: {"status:"status,"balance":balance,"date":date,"amount":amount}
+        result dict: {"status":status->bool,"balance": balance->float}
         """
-        try:
-            self.addr = addr
-        except:
-            self.addr = ADDR
+
         self.search_locator = "search--text-input"
         self.balance_locator_nonezero = "/html/body/div/div/div/div/div/div/div[2]/div/div[1]/div[2]/div[1]/div[2]/div[2]/div[2]/div/span[1]"
         self.balance_locator_zero = "/html/body/div/div/div/div/div/div/div[2]/div/div/div[2]/div[1]/div[2]/div[2]/div[2]"
@@ -41,6 +38,7 @@ class IOTA_crawler:
         self.amount_locator = "AMOUNT"
         self.id_date = 0
         self.id_amount = 0
+        self.addr = ""
 
         # driver setting
         self.options = Options()
@@ -48,10 +46,6 @@ class IOTA_crawler:
             "excludeSwitches", ["enable-automation", "enable-logging"]
         )
         self.options.add_argument("--enable-javascript")
-
-    def start(self):  # start crawling
-        status = False
-        balance = 0
         try:
             # open chrome and maximize window
             # self.browser = webdriver.Chrome(
@@ -72,8 +66,19 @@ class IOTA_crawler:
             # time.sleep(12)
             try:
                 WebDriverWait(self.browser, 20).until(EC.visibility_of_element_located((By.CLASS_NAME, self.search_locator)))
+                print("Connected to Tangle")
             except:
                 print("IOTA_TANGLE: waitfail")
+        except:
+            pass
+    def get_balance(self, addr=ADDR):  # start crawling
+        try:
+            self.addr = addr
+        except:
+            self.addr = ADDR
+        status = False
+        balance = 0
+        try:
 
             ##find searching element and send ADDRESS
             input_ele = self.browser.find_element(By.CLASS_NAME, self.search_locator)
@@ -124,7 +129,7 @@ class IOTA_crawler:
             status = True
             print("close browser...")
             # self.browser.close()
-            self.browser.quit()
+            #self.browser.quit()
         except Exception as error:
             print("crawling error: ")
             print(error)
@@ -136,6 +141,13 @@ class IOTA_crawler:
 
 
 if __name__ == "__main__":
+    
+    crawler = IOTA_crawler()
+    result = crawler.get_balance(addr=ADDR)
+
+    time.sleep(5)
+
+    print("crawl 2")
     ADDR = "iota1qqc9mzff65d8d44y7gp0s4jrt7rdygua2kqmh242apcwhdcw0236sxh6esw"
-    crawler = IOTA_crawler(addr=ADDR)
-    result = crawler.start()
+    result = crawler.get_balance(addr=ADDR)
+    crawler.browser.quit()
