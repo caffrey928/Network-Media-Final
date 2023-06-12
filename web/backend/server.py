@@ -49,9 +49,9 @@ def payment():
             work = True
             response = { 'data': "Success Payment!" }
         
-        # p = multiprocessing.Pool(processes = 1)
-        # p.apply_async(requests.post, args=[f'{base_url}/payment'], kwds={'json': {"work": work}})
-        # p.close()
+        p = multiprocessing.Pool(processes = 1)
+        p.apply_async(requests.post, args=[f'{base_url}/payment'], kwds={'json': {"work": work}})
+        p.close()
 
         # Return the response
         return response
@@ -96,9 +96,9 @@ def member_payment(name):
             response = { 'data': "Success Payment!", "money": str(user['money']) }
         
 
-        # p = multiprocessing.Pool(processes = 1)
-        # p.apply_async(requests.post, args=[f'{base_url}/payment'], kwds={'json': {"work": work}})
-        # p.close()
+        p = multiprocessing.Pool(processes = 1)
+        p.apply_async(requests.post, args=[f'{base_url}/payment'], kwds={'json': {"work": work}})
+        p.close()
 
         # Return the response
         return response
