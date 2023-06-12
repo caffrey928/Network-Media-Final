@@ -17,7 +17,6 @@ import time
 IOTA_TANGLE = "https://explorer.iota.org/mainnet"  # mainnet
 ADDR = "iota1qqlvc9x3whxunu9pacm6zq2jv6mp5a8yz26ppljhe0ftjd6v03qdc45jd4m"  # user account address
 
-
 class IOTA_crawler:
     def __init__(self):
         """
@@ -79,12 +78,17 @@ class IOTA_crawler:
         status = False
         balance = 0
         try:
-
+            self.browser.refresh()
+            try:
+                WebDriverWait(self.browser, 20).until(EC.visibility_of_element_located((By.CLASS_NAME, self.search_locator)))
+                print("Connected to Tangle")
+            except:
+                print("IOTA_TANGLE: waitfail")
             ##find searching element and send ADDRESS
             input_ele = self.browser.find_element(By.CLASS_NAME, self.search_locator)
             input_ele.send_keys(ADDR)
             input_ele.send_keys(Keys.ENTER)
-            # time.sleep(5)
+
             try:
                 WebDriverWait(self.browser, 20).until(EC.visibility_of_element_located((By.CLASS_NAME, self.balance_locator_wait)))
             except:

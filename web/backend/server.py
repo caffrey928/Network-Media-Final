@@ -29,8 +29,7 @@ def payment():
     if request.method == 'GET':
         # Crawl payment data
         print("Crawling...")
-        crawler = IOTA_crawler()
-        result = crawler.start()
+        result = crawler.get_balance()
         print("Crawled!")
 
         if(result["status"]):
@@ -63,8 +62,7 @@ def member_payment(name):
     if request.method == 'GET':
         # Crawl payment data
         print("Crawling...")
-        crawler = IOTA_crawler()
-        result = crawler.start()
+        result = crawler.get_balance()
         print("Crawled!")
 
         # Find user data based on name
@@ -88,7 +86,7 @@ def member_payment(name):
             user['money'] = total
             with open("Users.txt", "w") as f:
                 f.write(str(Users))
-            response = { 'data': f"No enough money! ({str(total)} Mi)", "money": str(user['money']) }
+            response = { 'data': f"No enough money!", "money": str(user['money']) }
         else:
             work = True
             total -= 5
@@ -187,7 +185,7 @@ if __name__ == '__main__':
     # initial crawl to set initial balance
     print("Start first crawling...")
     crawler = IOTA_crawler()
-    result = crawler.start()
+    result = crawler.get_balance()
     if(result["status"]):
         balance = result["balance"]
     

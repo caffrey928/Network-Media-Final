@@ -109,7 +109,7 @@ function App() {
           {loginUser ? (
             <>
               <p className="dialog__text">User: {loginUser}</p>
-              <p className="dialog__text">account balance: {money}</p>
+              <p className="dialog__text">account balance: {money} Mi</p>
               <button
                 className="dialog__button"
                 onClick={() => handleSignOut()}
@@ -161,25 +161,9 @@ function App() {
               Apply Payment
             </button>
           )}
-
-          {/* <div className="grid-container">
-                        <div />
-                        <h1 className="dialog__title">{tutorial ? "Tutorial" : "Verifier"}</h1>
-                        <div className="dialog__iconbutton">
-                            <IconButton size="large" title="Tutorial" onClick={() => setTutorial(!tutorial)}>
-                                {tutorial ? <CloseIcon className="dialog__icon" /> : <ErrorOutlineIcon className="dialog__icon" />}
-                            </IconButton>
-                        </div>
-                    </div>
-                    {tutorial ? <TutorialPage /> : <MainPage />} */}
         </div>
       </div>
     </>
-    // <>
-    //     <input type="text" value={Username} onChange={handleChange} />
-    //   <h1>{loginUser ? loginUser : "HiHi"}</h1>
-    //   <h1>{loginUser ? money : "not yet login!"}</h1>
-    // </>
   );
 }
 
