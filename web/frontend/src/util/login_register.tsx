@@ -1,5 +1,8 @@
 import { decode } from "./CBOR";
 
+// const base_url = `http://172.20.10.2:8000`;
+const base_url = `http://localhost:8000`;
+
 const base64url = {
   encode: (buf: Uint8Array) => {
     const base64 = btoa(String.fromCharCode(...buf));
@@ -223,11 +226,11 @@ function makeid(length: number): string {
 
 async function getallUsers() {
   try {
-    const response = await fetch("http://localhost:8000/UserDB/", {
+    const response = await fetch(base_url + "/UserDB/", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Origin: "http://localhost:8000",
+        Origin: base_url,
       },
     });
     const data = await response.json();
@@ -244,12 +247,12 @@ async function storeUser(
   publicKey: object
 ): Promise<void> {
   try {
-    const response = await fetch("http://localhost:8000/UserDB/" + name, {
+    const response = await fetch(base_url + "/UserDB/" + name, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Origin: "http://localhost:8000",
+        Origin: base_url,
       },
       body: JSON.stringify({
         name: name,
@@ -273,12 +276,12 @@ async function authUser(
   signature: ArrayBuffer
 ): Promise<string> {
   try {
-    const response = await fetch("http://localhost:8000/Auth/" + name, {
+    const response = await fetch(base_url + "/Auth/" + name, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Origin: "http://localhost:8000",
+        Origin: base_url,
       },
       body: JSON.stringify({
         name: name,

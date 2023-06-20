@@ -49,9 +49,15 @@ def payment():
             work = True
             response = { 'data': "Success Payment!" }
         
-        p = multiprocessing.Pool(processes = 1)
-        p.apply_async(requests.post, args=[f'{base_url}/payment'], kwds={'json': {"work": work}})
-        p.close()
+        try:
+            p = multiprocessing.Pool(processes = 1)
+            p.apply_async(requests.post, args=[f'{base_url}/payment'], kwds={'json': {"work": work}})
+            p.close()
+        except Exception as e:
+            print(e)
+            print("Fail to send request to rpi_server!")
+        
+        
 
         # Return the response
         return response
@@ -95,10 +101,13 @@ def member_payment(name):
                 f.write(str(Users))
             response = { 'data': "Success Payment!", "money": str(user['money']) }
         
-
-        p = multiprocessing.Pool(processes = 1)
-        p.apply_async(requests.post, args=[f'{base_url}/payment'], kwds={'json': {"work": work}})
-        p.close()
+        try:
+            p = multiprocessing.Pool(processes = 1)
+            p.apply_async(requests.post, args=[f'{base_url}/payment'], kwds={'json': {"work": work}})
+            p.close()
+        except Exception as e:
+            print(e)
+            print("Fail to send request to rpi_server!")
 
         # Return the response
         return response
